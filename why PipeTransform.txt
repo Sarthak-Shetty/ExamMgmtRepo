@@ -1,0 +1,7 @@
+Including it and using implements PipeTransform ensures that your class will implement the required transform method and conform to its interface (specifically requiring the first value parameter ... it doesn't do much else).
+
+Conforming to the interface catches possible runtime errors (during transpile time) including but possibly not limited to:
+
+Not implementing transform at all
+Not returning a value from transform
+This is similar to implements OnInit / ngOnInit. You don't have to implement it for the code to work, but it's a good practice.

@@ -1,0 +1,74 @@
+
+using MyDataAccessLibrary;
+namespace csharp_day7
+
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            DataAccess ?da=null;
+
+            try
+            {
+                da = new DataAccess();
+
+                //da.GetAllVehicles();
+
+                ////use a foreach loop to iterate the list of vehicles
+                //foreach (var vehicle in da.GetAllVehicles())
+                //{
+                //    Console.WriteLine("Vehicle Id: {0}", vehicle.VehicleId);
+                //    Console.WriteLine("Brand: {0}", vehicle.Brand);
+                //    Console.WriteLine("Model: {0}", vehicle.Model);
+                //    Console.WriteLine("Year: {0}", vehicle.Year);
+                //    Console.WriteLine();
+                //}
+
+                //input brand name from the user
+                Console.WriteLine("Enter the Brand Name : ");
+                string?brand=Console.ReadLine();
+
+                foreach (var vehicle in da.GetVehiclesByBrand(brand))
+                {
+                    Console.WriteLine("Vehicle Id: {0}", vehicle.VehicleId);
+                    Console.WriteLine("Brand: {0}", vehicle.Brand);
+                    Console.WriteLine("Model: {0}", vehicle.Model);
+                    Console.WriteLine("Year: {0}", vehicle.Year);
+                    Console.WriteLine();
+                }
+
+                //input values from user for insertion
+                Console.Write("Enter vehicle id: ");
+                int vid = int.Parse(Console.ReadLine());
+
+
+                Console.Write("Brand?: ");
+                string vbrand = Console.ReadLine();
+
+                Console.Write("Model?: ");
+                string model = Console.ReadLine();
+
+
+                Console.Write("Year: ");
+                int year = int.Parse(Console.ReadLine());
+
+
+                da.AddVehicle(vid, vbrand, model, year);
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("SOMETHING WENT WRONG");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                da?.CloseConnection();
+            }
+            Console.WriteLine("Coding continues");
+            
+        }
+    }
+}

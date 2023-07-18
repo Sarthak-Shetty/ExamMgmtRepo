@@ -1,0 +1,61 @@
+EDIT TS file
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UsersServiceService } from './users-service.service';
+
+@Component({
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
+})
+export class EditUserComponent implements OnInit {
+  public uId:any;
+  public username:string="";
+  public password:string="";
+ 
+  public getUser(){
+    return this.usersSvc.getUser(this.uId).subscribe(
+      (data)=>{
+        this.username=data.username;
+        this.password=data.password;
+      }
+    )
+
+  }
+  public onclickSaveChanges(){
+   let edituser={
+      username:this.username,
+      password:this.password
+    }
+    return this.usersSvc.editUser(this.uId,edituser).subscribe(
+      (data)=>{console.log(edituser)
+      
+    }
+    )
+  }
+
+  constructor(private usersSvc:UsersServiceService, private router: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    let editid=(this.router.snapshot.paramMap.get('id'))
+    this.uId=editid;
+    this.getUser()
+  }
+
+}
+
+
+
+EDIT HTML file
+
+
+User ID : <input type="text" [(ngModel)]="uId"/> &nbsp; 
+<button class="btn btn-warning" (click)="getUser()">Get Details</button>
+<br/> <br/>
+<div>
+    Username : <input type="text" [(ngModel)]="username">
+    Password : <input type="text" [(ngModel)]="password">
+    <br/> <br/>
+    <button (click)="onclickSaveChanges()" class="btn btn-warning">Save Changes</button>
+</div>

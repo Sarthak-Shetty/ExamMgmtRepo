@@ -1,0 +1,13 @@
+Benifits of using QA
+
+*Reduces testing time and cost
+*Improves product quality
+*Better resource utilization
+*Suited for CI/CD and DevOps
+
+4 Challenges of QA Automation
+
+*Human dependency
+*Initial setup costs
+*Selecting the right tool
+*Inefficient team collaboration

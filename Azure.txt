@@ -1,0 +1,11 @@
+https://sarthak14109.blob.core.windows.net/mycontainer/assign5.html?sv=2021-06-08&ss=b&srt=o&sp=r&se=2023-01-09T07:30:00Z&st=2023-01-09T05:58:33Z&spr=https&sig=Y1BvNv19PLWZTOrhDI%2FXmf8AIHgX8kto7KEMZST5Fsc%3D
+
+
+
+
+DefaultEndpointsProtocol=https;AccountName=sarthak14109;AccountKey=yI7TNoK40Y2IcDGf50HfTSdQDWmOyWAYLHKTUiFt85f3apjreRNDmbw8okOyoTWnnIscFDadOMWK+ASttub9pg==;EndpointSuffix=core.windows.net
+
+
+az storage container list --account-name sarthak14109
+
+az storage container create --name democontainer --account-name sarthak14109

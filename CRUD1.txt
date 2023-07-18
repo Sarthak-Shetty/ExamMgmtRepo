@@ -1,0 +1,56 @@
+DELETE TS file
+
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsersServiceService } from './users-service.service';
+
+@Component({
+  selector: 'app-delete-user',
+  templateUrl: './delete-user.component.html',
+  styleUrls: ['./delete-user.component.css']
+})
+export class DeleteUserComponent implements OnInit {
+  public uId:string="";
+  public username:string="";
+  
+public onclickGetdetails(){
+    return this.usersSvc.getUser(this.uId).subscribe(
+    (data)=>{
+      this.username=data.username;
+      console.log(this.username)
+    }
+  )
+}
+
+  public onclickDelete(){
+    this.usersSvc.deleteUser(this.uId).subscribe(
+      (data)=>{
+        console.log("user deleted")
+        this.router.navigate(['allusers']);
+      }
+    )
+  }
+  constructor(private usersSvc:UsersServiceService,private router:Router) { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+
+
+
+
+
+DELETE HTML
+
+
+User Id : <input type="text" [(ngModel)]="uId"/> &nbsp;
+<button class="btn btn-warning" (click)="onclickGetdetails()">Get Details</button>
+<br/>
+{{username}}
+<br/>
+<br/>
+
+<button class="btn btn-warning" (click)="onclickDelete()">Delete</button>

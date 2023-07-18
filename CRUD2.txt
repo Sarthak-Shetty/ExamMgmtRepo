@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersServiceService {
+  public value:string="";
+
+  constructor(private http:HttpClient) {
+    console.log("User Service Called")
+   }
+   public getValue(somedata:string){
+    this.value=somedata;
+   }
+   public getUser(userId:any){
+    return this.http.get<any>("http://localhost:3000/users/"+userId);
+   }
+   public getUsers(){
+    return this.http.get<any>("http://localhost:3000/users");
+   }
+   public addUser(newuser:any){
+    return this.http.post<any>("http://localhost:3000/users",newuser);
+   }
+   public editUser(uid:any,edituser : any){
+    return this.http.put("http://localhost:3000/users/"+uid,edituser);
+   }
+   public deleteUser(userId:any){
+    return this.http.delete<any>("http://localhost:3000/users/"+userId);
+   }
+}
